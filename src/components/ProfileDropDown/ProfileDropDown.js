@@ -10,13 +10,9 @@ export default function ProfileDropDown(){
     let Class = "text-black border-black border p-1"
     let Class2 = "'text-black border-black border p-1 hidden"
 
-
-
     let [showModal, setModal] = useState(false);
     let [isActive, setActive] = useState(icon);
     let [hide, setHide] = useState(Class);
-
-    
 
     const show = () =>{
         setModal(!showModal);
@@ -37,7 +33,7 @@ export default function ProfileDropDown(){
 
         {showModal ? (
             <div className='container'>
-                <div className='box w-[10rem] h-auto rounded-md absolute shadow-xl top-16 left-[1100px] border z-10 bg-white'>
+                <div className='box w-[10rem] h-auto rounded-md absolute shadow-xl top-16 left-[1100px] border z-50 bg-white'>
                     {renderList}
                 </div>
             </div>

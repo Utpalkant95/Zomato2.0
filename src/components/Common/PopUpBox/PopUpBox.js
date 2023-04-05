@@ -27,7 +27,7 @@ export default function PopUpBox() {
          </Tooltip>
         
         {showModal ? (
-            <div className='Container w-[23rem] max-h-60 rounded-md absolute left-[250px] overflow-auto top-[70px] shadow-xl border visible-none z-10 bg-white'>
+            <div className='Container w-[23rem] max-h-60 rounded-md absolute left-[250px] overflow-auto top-[70px] shadow-xl border visible-none z-50 bg-white'>
                 <div className='location flex mt-4 my-4'>
                     <div className='location-icon mx-4'>
                         <i class='bx bx-current-location'></i>

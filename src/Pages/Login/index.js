@@ -1,11 +1,3 @@
-// import React, { useState } from 'react';
-// import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-// import { Auth } from 'firebase/auth';
-// import { auth } from '../../components/Firebase/Firebase';
-// import { async } from '@firebase/util';
-// import { useNavigate } from 'react-router-dom';
-import PopUpBox from "../../components/Common/PopUpBox/PopUpBox";
-import { Tooltip } from "@material-tailwind/react";
 import { useState } from "react";
 import LoginTabOption from "../../components/LoginTabOptions";
 import { NightLifeComp } from "../../components";
@@ -15,66 +7,7 @@ import Collections from "../../components/Collections/Collections";
 import {Localities} from "../../components";
 import {ExploreOptions} from "../../components";
 import { SignUpModal } from "../../components/SignUpModal";
-// const Login = () => {
-//   const navigate= useNavigate();
-//   const [values, setValues] = useState({
-//     name:"",
-//     email:"",
-//     password:""
-//   })
-
-//   const submisionHandler = (event) =>{
-//     event.preventDefault()
-
-//     createUserWithEmailAndPassword(auth,values.email,values.password).then(
-//       async(res)=>{
-//         const user = res.user;
-//         await updateProfile(user,{
-//           displayName:values.name
-//         })
-//         navigate('/')
-//         console.log(user);
-//       }
-//     ).catch(err=>console.log(err))
-//   }
-//   return (
-//     <div>
-// <header class="site-header">
-//   <div class="site-identity">
-//     <h1>Get the App</h1>
-//   </div>
-//   <nav class="site-navigation">
-//     <ul class="nav">
-//         <li>Investor Relations</li>
-//         <li>Add restaurant</li>
-//         <li>Log In</li>
-//         <li>Sign Up</li>
-//     </ul>
-//   </nav>
-// </header>
-
-//     <form>
-//       <label >Full Name</label> <br />
-//       <input type='text' placeholder='enter your full name' id='fullname'
-//         onChange={(e)=>setValues((prev)=>({...prev,name:e.target.value}))}
-//       />
-//       <br />
-//       <label>Enter Email</label>
-//       <br></br>
-//       <input id='email' type='email' placeholder='enter your email' onChange={(e)=>setValues((prev)=>({...prev,email:e.target.value}))}/>
-//       <br></br>
-//       <label>Password</label> <br />
-//       <input type='password' placeholder='enter your password' id='password'
-//         onChange={(e)=>setValues((prev)=>({...prev,password:e.target.value}))}
-//       />
-//       <br></br>
-//       <button type='submit' onClick={submisionHandler}>Sign Up</button>
-//     </form>
-//   </div>
-//   )
-// }
-
-// export default Login
+import LoginModal from "../../components/LoginModal";
 
 let Collection=[
   {
@@ -380,11 +313,17 @@ let exploreOptions=[
 function Login() {
 
   const [activeTab, setActiveTab] = useState('');
-  const [show,setShow] = useState(false);
+  const [showSignUp,setShowSignUp] = useState(false);
+  const [showLogIn, setShowLogIn] = useState(false)
 
-  const showHide = () =>{
-    setShow(!show)
+  const showHideSignUp = () =>{
+    setShowSignUp(!showSignUp)
   };
+
+  const showHideLogIn = () =>{
+    setShowLogIn(!showLogIn)
+  };
+
   return (
     <div className="">
       <section className="w-full bg-[url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png')] text-white">
@@ -396,8 +335,8 @@ function Login() {
             <ul class="nav flex text-lg cursor-pointer px-4 gap-10">
               <li>Investor Relations</li>
               <li>Add restaurant</li>
-              <li>Log In</li>
-              <li onClick={showHide}>Sign Up</li>
+              <li onClick={showHideLogIn}>Log In</li>
+              <li onClick={showHideSignUp}>Sign Up</li>
             </ul>
           </nav>
         </header>
@@ -441,7 +380,7 @@ function Login() {
               <div className="input">
                 <input type="text" placeholder="Search for restaurant, cuisine or a dish" className="w-[474px] h-14 focus:outline-none text-black"/>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       </section>
@@ -455,7 +394,11 @@ function Login() {
       <ExploreOptions heading="Explore options near me" exploreOptions={exploreOptions}/>
 
       {
-        show ? <SignUpModal/> : ""
+        showSignUp ? <SignUpModal/> : ""
+      }
+
+      {
+        showLogIn ? <LoginModal/> : ""
       }
     </div>
   );
